@@ -40,6 +40,7 @@ language:
       recommendationservice: 'python'
       adservice: 'java'
       loadgenerator: 'python'
+      ratingservice: 'python'
     tests:
       # To designate the default language for a subdirectory use '.'
       .: 'python'

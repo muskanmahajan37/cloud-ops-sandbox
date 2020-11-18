@@ -117,17 +117,17 @@ resource "google_storage_bucket_object" "default_main" {
   source = "${local.source_path}/pong.py"
 }
 
-data "external" "app_engine_state" {
-  program = ["${path.module}/setup_app_engine.sh", var.gcp_project_id]
-}
+# data "external" "app_engine_state" {
+#   program = ["${path.module}/setup_app_engine.sh", var.gcp_project_id]
+# }
 
 resource "google_app_engine_application" "app" {
-  count       = data.external.app_engine_state.result.application_exist == "false" ? 1 : 0
+  #  count       = data.external.app_engine_state.result.application_exist == "false" ? 1 : 0
   location_id = var.gcp_region_name
 }
 
 resource "google_app_engine_standard_app_version" "default" {
-  count      = data.external.app_engine_state.result.default_svc_exist == "false" ? 1 : 0
+  #  count      = data.external.app_engine_state.result.default_svc_exist == "false" ? 1 : 0
   service    = "default"
   version_id = "v1"
   runtime    = "python38"
